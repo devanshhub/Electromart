@@ -1,6 +1,6 @@
 
 
-import { cardData } from "../data/product"
+import { cardData } from "../data/product.js"
 import { Link } from "react-router-dom"
 import Card from "../components/Card"
 
