@@ -12,7 +12,7 @@ import AllProducts from './pages/allproducts/AllProducts'
 import SinglePage from './pages/singleProductPage/SinglePage'
 
 import Cart from './pages/cart/Cart'
-import CheckOut from './pages/checkout/CheckOut'
+// import CheckOut from './pages/checkout/CheckOut'
 import { useSelector } from 'react-redux'
 import Productslider from './components/Productslider'
 
@@ -39,7 +39,7 @@ function App() {
       <Route path="/allproducts" element={<AllProducts />} />
       <Route path="/allproducts/:id" element={<SinglePage />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/checkout" element={<CheckOut />} />
+      {/* <Route path="/checkout" element={<CheckOut />} /> */}
       <Route path="*" element={<h1>Page not found</h1>} />
     </Routes>
    <Footer/>
