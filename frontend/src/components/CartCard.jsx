@@ -26,7 +26,7 @@ const CartCard = ({ cardData }) => {
       <div className='flex w-[100%] mt-5  items-center justify-around py-6 shadow-3xl'>
 
       <Link to={`/allproducts/${cardData.id}`} className=' w-[5%] flex items-center  gap-1'>
-        <img className=' w-[100%]' src={cardData.image} alt="" />
+        <img className=' w-[100%]' src={cardData.image} alt={cardData.name} />
         <h1 className=' text-xs'>{cardData.name.slice(1, 19)}...</h1>
       </Link>
       <h1 className=''>₹{cardData.currentPrice}</h1>

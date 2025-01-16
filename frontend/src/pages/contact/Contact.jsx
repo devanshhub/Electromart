@@ -7,14 +7,14 @@ const Contact = () => {
         <div className='my-24  w-[80%] mx-auto flex gap-10 items-center justify-center'>
             <div className=' rounded-sm shadow-3xl border-blue-100 h-full  py-16 px-5' >
                 <div className='flex justify-start gap-5 items-center' >
-                    <img src={iconsphone} alt="" />
+                    <img src={iconsphone} alt="icon " />
                     <h1 className='font-semibold' >  Call To Us </h1>
                 </div>
                 <p className='mt-4' >We are available 24/7, 7 days a week.</p>
                 <p className='mt-3 mb-6'>Phone: +919628350440</p>
                 <hr />
                 <div className='flex justify-start mt-6 gap-5 items-center' >
-                    <img src={iconsmail} alt="" />
+                    <img src={iconsmail} alt="mail" />
                     <h1 className='font-semibold ' >Write To Us</h1>
                 </div>
                 <p className='mt-4' >Fill out our form and we will contact

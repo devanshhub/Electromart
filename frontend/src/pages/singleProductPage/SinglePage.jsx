@@ -61,14 +61,14 @@ const SinglePage = () => {
                 <div className='w-[65%] flex gap-5' >
                     {filteredData[0]?.image1 ?(
                         <div className='w-[25%] flex flex-col gap-5 ' >
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image1 ||"/image/Havit1.png"} alt="" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image2 ||"/image/Havit2.png"} alt="" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image3 ||"/image/Havit3.png"} alt="" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image4 ||"/image/Havit1.png"} alt="" />
+                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image1 ||"/image/Havit1.png"} alt="image1" />
+                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image2 ||"/image/Havit2.png"} alt="image2" />
+                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image3 ||"/image/Havit3.png"} alt="image3" />
+                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image4 ||"/image/Havit1.png"} alt="image4" />
                     </div>
                     ):""}
                     <div className='h-[100%] w-[100%] flex items-center justify-center hover:bg-gray-200 bg-gray-100'>
-                        <img className='h-[80%] w-[80%]' src={filteredData[0]?.image} alt="" />
+                        <img className='h-[80%] w-[80%]' src={filteredData[0]?.image} alt="image" />
                     </div>
                 </div>
                 <div className='w-[35%]  '>
@@ -143,7 +143,7 @@ const SinglePage = () => {
                         </div>
                         <button className=" bg-red-500 rounded hover:bg-red-600 border text-white py-2 px-12" onClick={handleAddToCart} >Add to cart</button>
                         <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <img src="/image/Wishlist.png" alt="" />
+                            <img src="/image/Wishlist.png" alt="iamge" />
                         </button>
                     </div>
 
@@ -151,7 +151,7 @@ const SinglePage = () => {
                         <div>
                             <div className='border  flex rounded-t  py-4 mt-8'>
                                 <div>
-                                    <img className='px-4' src="/image/icondelivery.png" alt="" />
+                                    <img className='px-4' src="/image/icondelivery.png" alt="asdsad" />
                                 </div>
                                 <div>
                                     <h1>Free Delivery</h1>
@@ -162,7 +162,7 @@ const SinglePage = () => {
                         <div>
                             <div className='border flex rounded-b py-4  '>
                                 <div>
-                                    <img className='px-4' src="/image/iconreturn1.png" alt="" />
+                                    <img className='px-4' src="/image/iconreturn1.png" alt="asdas" />
                                 </div>
                                 <div>
                                     <h1>Return Delivery</h1>

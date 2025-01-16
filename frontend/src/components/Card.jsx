@@ -43,13 +43,13 @@ const Card = ({ card }) => {
               <img
                 loading="lazy"
                 src="/image/FillHeart.png"
-                alt=""
+                alt="fillheart"
                 className="object-contain aspect-square w-[34px]"
               />
               <img
                 loading="lazy"
                 src="/image/FillEye.png"
-                alt=""
+                alt="fill heart"
                 className="object-contain mt-2 aspect-square w-[34px]"
               />
             </div>
