@@ -6,22 +6,22 @@ const slides = [
   {
     title: 'iPhone 14 Series',
     subtitle: 'Up to 10% off Voucher',
-    shopLink: '#',
-    imageUrl: '#',
+    shopLink: '',
+    imageUrl: 'https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-geo-240909-lp.jpg.news_app_ed.jpg',
     bgColor: 'bg-black',
   },
   {
     title: 'Apple Watch Ultra',
     subtitle: 'Track your every move',
-    shopLink: '#',
-    imageUrl: '#',
+    shopLink: '',
+    imageUrl: 'https://www.apple.com/newsroom/images/product/watch/standard/Apple-Watch-S8-2up-hero-220907.jpg.landing-big_2x.jpg',
     bgColor: 'bg-slate-900',
   },
   {
     title: 'MacBook Air M2',
     subtitle: 'Power and portability',
-    shopLink: '#',
-    imageUrl: '#',
+    shopLink: '',
+    imageUrl: 'https://media.wired.com/photos/5bd883dc5b66a763e54f0b22/master/pass/macbookair3.jpg',
     bgColor: 'bg-slate-800',
   },
 ];
@@ -167,33 +167,34 @@ const Hero = () => {
     <div className="flex justify-center mb-5">
       <div className="w-1/4 bg-white border-r pt-16 border-gray-300 p-4">
         <div className="flex flex-col p-4 space-y-4 text-gray-700 ">
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Tubular Batteries <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Inverter <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Solar Panels <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Voltage Stablizers <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Automotive Batteries <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Wires <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Switches & Sockets <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Lighting <span>›</span>
           </a>
-          <a href="#" className="flex justify-between items-center hover:text-black">
+          <a href="" className="flex justify-between items-center hover:text-black">
             Appliances <span>›</span>
           </a>
+          
         </div>
       </div>
       <div className="w-3/4 bg-white p-8">
