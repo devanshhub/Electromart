@@ -1,10 +1,7 @@
 
 import Hero from "./Hero"
-
 import SelectCategory from "./SelectCategory"
-
 import Productslider from "../../components/Productslider"
-
 
 
 
@@ -13,7 +10,8 @@ function Home() {
 
   return (
     <>
-      <Hero />
+      <Hero/>
+      
       <Productslider/>
       <SelectCategory />
     </>
