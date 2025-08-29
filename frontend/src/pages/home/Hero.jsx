@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 // Placeholder data for the banner slides.
 // You can replace this with your own data.
@@ -164,33 +165,33 @@ const Hero = () => {
     <div className="flex justify-center mb-5">
       <div className="w-1/4 bg-white border-r pt-16 border-gray-300 p-4">
         <div className="flex flex-col p-4 space-y-4 text-gray-700 ">
-          <a className="flex justify-between items-center hover:text-black">
+          <Link className="flex justify-between items-center hover:text-black">
             Tubular Batteries <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Inverter <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Solar Panels <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Voltage Stablizers <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Automotive Batteries <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Wires <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Switches & Sockets <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Lighting <span>›</span>
-          </a>
-          <a className="flex justify-between items-center hover:text-black">
+          </Link>
+          <Link className="flex justify-between items-center hover:text-black">
             Appliances <span>›</span>
-          </a>
+          </Link>
           
         </div>
       </div>
