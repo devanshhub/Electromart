@@ -7,18 +7,21 @@ const slides = [
   {
     title: 'iPhone 14 Series',
     subtitle: 'Up to 10% off Voucher',
+    shoplink: '#',
     imageUrl: 'https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/tile/Apple-iPhone-16-Pro-hero-geo-240909-lp.jpg.news_app_ed.jpg',
     bgColor: 'bg-black',
   },
   {
     title: 'Apple Watch Ultra',
     subtitle: 'Track your every move',
+    shoplink: '#',
     imageUrl: 'https://www.apple.com/newsroom/images/product/watch/standard/Apple-Watch-S8-2up-hero-220907.jpg.landing-big_2x.jpg',
     bgColor: 'bg-slate-900',
   },
   {
     title: 'MacBook Air M2',
     subtitle: 'Power and portability',
+    shoplink: '#',
     imageUrl: 'https://media.wired.com/photos/5bd883dc5b66a763e54f0b22/master/pass/macbookair3.jpg',
     bgColor: 'bg-slate-800',
   },
