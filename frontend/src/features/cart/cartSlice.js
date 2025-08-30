@@ -1,104 +1,78 @@
 // src/features/cart/cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  items: [], // Array to store cart items
-  totalQuantity: 0, // Total number of items in the cart
-  totalPrice: 0, // Total price of items in the cart
+// A helper function to update totals and save to localStorage
+const updateStateAndLocalStorage = (state) => {
+  // Recalculate total quantity
+  state.totalQuantity = state.items.reduce((total, item) => total + item.quantity, 0);
+  // Recalculate total price
+  state.totalPrice = state.items.reduce((total, item) => total + (item.currentPrice * item.quantity), 0);
+  // Save the entire cart state to localStorage
+  localStorage.setItem('cart', JSON.stringify(state));
 };
+
+// Load the initial state from localStorage, or use a default empty state
+const initialState = localStorage.getItem('cart')
+  ? JSON.parse(localStorage.getItem('cart'))
+  : {
+      items: [],
+      totalQuantity: 0,
+      totalPrice: 0,
+    };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // Add an item to the cart
+    // Adds an item to the cart, or increases its quantity if it already exists
     addItem: (state, action) => {
       const newItem = action.payload.item;
-      const quantity = action.payload.quantity;
-      // console.log(newItem);
-      
+      const quantity = action.payload.quantity || 1;
       const existingItem = state.items.find((item) => item.id === newItem.id);
 
       if (existingItem) {
-        existingItem.quantity += (quantity===1)?1:quantity;
-        console.log(existingItem.quantity);
-        
-        existingItem.totalPrice += parseFloat(newItem.currentPrice);
+        existingItem.quantity += quantity;
       } else {
-        state.items.push({
-          id: newItem.id,
-          name: newItem.name,
-          image: newItem.image,
-          discount: newItem.discount,
-          currentPrice: parseFloat(newItem.currentPrice),
-          originalPrice: parseFloat(newItem.originalPrice),
-          rating: newItem.rating,
-          reviews: newItem.reviews,
-          quantity: quantity,
-          totalPrice: parseFloat(newItem.currentPrice),
-        });
+        // Push a clean version of the item, ensuring quantity is set
+        state.items.push({ ...newItem, quantity: quantity });
       }
-
-      state.totalQuantity += 1;
-      state.totalPrice += parseFloat(newItem.currentPrice);
+      updateStateAndLocalStorage(state);
     },
 
-    // Remove an item from the cart
+    // Removes an entire item line (e.g., all 5 units of a product) from the cart
     removeItem: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
-
-      if (existingItem) {
-        state.totalQuantity -= existingItem.quantity;
-        state.totalPrice -= existingItem.totalPrice;
-        state.items = state.items.filter((item) => item.id !== id);
-      }
+      const idToRemove = action.payload;
+      state.items = state.items.filter((item) => item.id !== idToRemove);
+      updateStateAndLocalStorage(state);
     },
 
-    // Decrease item quantity
-    decreaseItemQuantity: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+    // Sets the quantity for a specific item, used by the +/- buttons
+    updateQuantity: (state, action) => {
+      const { id, quantity } = action.payload;
+      const itemToUpdate = state.items.find((item) => item.id === id);
 
-      if (existingItem) {
-        existingItem.quantity -= 1;
-        existingItem.totalPrice -= existingItem.currentPrice;
-
-        state.totalQuantity -= 1;
-        state.totalPrice -= existingItem.currentPrice;
-
-        if (existingItem.quantity === 0) {
+      if (itemToUpdate) {
+        if (quantity > 0) {
+          itemToUpdate.quantity = quantity;
+        } else {
+          // If quantity is 0 or less, remove the item
           state.items = state.items.filter((item) => item.id !== id);
         }
       }
+      updateStateAndLocalStorage(state);
     },
 
-    increaseItemQuantity: (state, action) => {
-        const id = action.payload;
-        const existingItem = state.items.find((item) => item.id === id);
-  
-        if (existingItem) {
-          existingItem.quantity += 1;
-          existingItem.totalPrice += existingItem.currentPrice;
-  
-          state.totalQuantity += 1;
-          state.totalPrice += existingItem.currentPrice;
-  
-          if (existingItem.quantity === 0) {
-            state.items = state.items.filter((item) => item.id !== id);
-          }
-        }
-      },
-
-    // Clear the entire cart
+    // Clears the entire cart
     clearCart: (state) => {
       state.items = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;
+      // Also clear from localStorage
+      localStorage.removeItem('cart');
     },
   },
 });
 
-export const { addItem, removeItem, decreaseItemQuantity, clearCart,increaseItemQuantity } = cartSlice.actions;
+export const { addItem, removeItem, updateQuantity, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

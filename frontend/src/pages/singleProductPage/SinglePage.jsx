@@ -1,204 +1,154 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
-
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+
+// Using correct relative paths as requested
 import { addItem } from '../../features/cart/cartSlice.js';
-import { decreaseItemQuantity, increaseItemQuantity } from '../../features/cart/cartSlice.js';
-
-
-//import Havitfront from "../../assets/Havitfront.png"
-// import Havit1 from "../../assets/Havit1.png"
-// import Havit2 from "../../assets/Havit2.png"
-// import Havit3 from "../../assets/Havit3.png"
-// import Havit4 from "../../assets/Havit4.png"
-import { cardData } from '../../data/product.js'
-import Card from '../../components/Card'
-import { useParams } from "react-router-dom";
+import { cardData } from '../../data/product.js';
+import Card from '../../components/Card';
+import { HeartIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/20/solid';
 
 const SinglePage = () => {
-    const { id } = useParams(); // `id` is a string from useParams
-    const numericId = Number(id); // Convert to a number
-    const item = useSelector((state) => state.cart);
-
-
-    const filteredItem = item.items.filter((item) => item.id === numericId);
-
-    const [count, setCount] = useState(filteredItem[0]?.quantity||1);
+    const { id } = useParams();
+    const numericId = Number(id);
     
-    const [selectedColor, setSelectedColor] = useState("");
-
-  const filteredData = cardData.filter((item) => item.id === numericId);
-
-  const dispatch = useDispatch();
-  
-  
-
-  
-
-
-  const handleAddToCart = () => {
-      dispatch(addItem({ item: filteredData[0], quantity: count }));
-    };
-   
+    // Find the specific product from your main data source
+    const product = cardData.find((item) => item.id === numericId);
     
+    // Check the Redux cart state to see if this item is already there
+    const cartItem = useSelector((state) => 
+        state.cart.items.find(item => item.id === numericId)
+    );
+
+    const dispatch = useDispatch();
     
-    const increment = () => {
-        setCount(count + 1);
-    }
-    const decrement = () => {
-        if (count > 1) {
-            setCount(count - 1);
+    // Local state for the quantity selector on this page
+    const [quantity, setQuantity] = useState(1);
+    const [selectedColor, setSelectedColor] = useState("Red"); // Default color
+    const [selectedSize, setSelectedSize] = useState("M"); // Default size
+
+    // If the item is already in the cart, sync the quantity selector when the page loads
+    useEffect(() => {
+        if (cartItem) {
+            setQuantity(cartItem.quantity);
         }
-    }
+    }, [cartItem]);
 
-    const handleColorChange = (color) => {
-        setSelectedColor(color);
+    const handleAddToCart = () => {
+        if (product) {
+            // Dispatch the item and the selected quantity to the cart
+            dispatch(addItem({ item: product, quantity }));
+        }
     };
+
+    // If the product ID from the URL is not found, display a message
+    if (!product) {
+        return (
+            <div className="w-[90%] mx-auto my-20 text-center">
+                <h1 className="text-2xl font-bold">Product Not Found</h1>
+                <Link to="/" className="mt-4 inline-block rounded bg-red-500 px-6 py-2 text-white">
+                    Go Home
+                </Link>
+            </div>
+        );
+    }
 
     return (
-        <div className='w-[80%] flex  flex-col mx-auto mt-20 mb-20    '>
-            <div className='flex  gap-10'>
-                <div className='w-[65%] flex gap-5' >
-                    {filteredData[0]?.image1 ?(
-                        <div className='w-[25%] flex flex-col gap-5 ' >
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image1 ||"/image/Havit1.png"} alt="image1" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image2 ||"/image/Havit2.png"} alt="image2" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image3 ||"/image/Havit3.png"} alt="image3" />
-                        <img className='bg-gray-100 p-4 hover:bg-gray-200' src={filteredData[0]?.image4 ||"/image/Havit1.png"} alt="image4" />
+        <div className='w-[90%] mx-auto my-12 md:my-16'>
+            {/* Breadcrumb Navigation */}
+            <p className="text-gray-500 text-sm mb-8">
+                Home / Products / <span className="font-medium text-black">{product.name}</span>
+            </p>
+
+            {/* Main Product Section */}
+            <div className='flex flex-col lg:flex-row gap-8 lg:gap-16'>
+                {/* Image Gallery (Responsive) */}
+                <div className='w-full lg:w-3/5 flex flex-col-reverse md:flex-row gap-4'>
+                    {/* Thumbnails */}
+                    <div className='w-full md:w-1/4 flex flex-row md:flex-col gap-4'>
+                        {[product.image1, product.image2, product.image3, product.image4].map((img, index) => (
+                           img && (
+                               <div key={index} className='bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200'>
+                                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full object-contain" />
+                               </div>
+                           )
+                        ))}
                     </div>
-                    ):""}
-                    <div className='h-[100%] w-[100%] flex items-center justify-center hover:bg-gray-200 bg-gray-100'>
-                        <img className='h-[80%] w-[80%]' src={filteredData[0]?.image} alt="image" />
+                    {/* Main Image */}
+                    <div className='w-full md:flex-1 bg-gray-100 rounded-lg flex items-center justify-center p-4 min-h-[300px]'>
+                        <img src={product.image} alt={product.name} className='max-h-[500px] object-contain' />
                     </div>
                 </div>
-                <div className='w-[35%]  '>
-                    <h1 className='font-semibold text-xl'>{filteredData[0].name}</h1>
-                    <h2 className='text-xl mb-5 mt-5'>${filteredData[0].currentPrice}</h2>
-                    <p className='text-sm mb-5'>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
-                    <hr />
-                    <div className="mt-5 flex items-center gap-6">
-                        <label>Colours:</label>
-                        <div className="flex items-center gap-3">
-                            {/* Blue Color */}
-                            <label className="flex items-center">
-                                <input
-                                    className="hidden"
-                                    type="radio"
-                                    value="blue"
-                                    name="color"
-                                    onChange={() => handleColorChange("blue")}
-                                    checked={selectedColor === "blue"}
-                                />
-                                <div
-                                    className={`h-6 w-6 rounded-full border-2 cursor-pointer ${selectedColor === "blue"
-                                        ? "border-black"
-                                        : "border-transparent"
-                                        } bg-blue-400`}
-                                    onClick={() => handleColorChange("blue")}
-                                ></div>
-                            </label>
-                            {/* Red Color */}
-                            <label className="flex  items-center">
-                                <input
-                                    className="hidden "
-                                    type="radio"
-                                    value="red"
-                                    name="color"
-                                    onChange={() => handleColorChange("red")}
-                                    checked={selectedColor === "red"}
-                                />
-                                <div
-                                    className={`h-6 w-6 rounded-full border-2 cursor-pointer ${selectedColor === "red"
-                                        ? "border-black"
-                                        : "border-transparent"
-                                        } bg-red-400`}
-                                    onClick={() => handleColorChange("red")}
-                                ></div>
-                            </label>
+
+                {/* Product Details (Responsive) */}
+                <div className='w-full lg:w-2/5'>
+                    <h1 className='text-2xl lg:text-3xl font-semibold'>{product.name}</h1>
+                    <div className="my-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                        <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                                <StarIcon key={i} className={`h-5 w-5 ${i < Math.round(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`} />
+                            ))}
+                        </div>
+                        <span className="text-sm text-gray-500">({product.reviews} Reviews)</span>
+                        <span className="hidden sm:inline mx-2 text-gray-300">|</span>
+                        <span className="text-sm text-green-600 font-medium">In Stock</span>
+                    </div>
+                    <p className='text-2xl lg:text-3xl mb-4'>${product.currentPrice}</p>
+                    <p className='text-gray-600 leading-relaxed pb-6 border-b'>{product.description || "High quality product with excellent features and a modern design. Perfect for everyday use."}</p>
+                    
+                    {/* Variants */}
+                    <div className="mt-6 flex flex-col gap-4">
+                        {/* Colors */}
+                        <div className="flex items-center gap-4">
+                            <span className="font-medium">Colour:</span>
+                             {['Red', 'Blue'].map(color => (
+                                <button key={color} onClick={() => setSelectedColor(color)} className={`h-8 w-8 rounded-full border-2 ${selectedColor === color ? 'border-red-500' : 'border-transparent'}`}>
+                                    <span className={`block h-full w-full rounded-full border-2 border-white bg-${color.toLowerCase()}-500`}></span>
+                                </button>
+                            ))}
+                        </div>
+                        {/* Sizes */}
+                        <div className="flex items-center gap-4 flex-wrap">
+                            <span className="font-medium">Size:</span>
+                            {['XS', 'S', 'M', 'L', 'XL'].map(size => (
+                                <button key={size} onClick={() => setSelectedSize(size)} className={`flex h-10 w-10 items-center justify-center rounded border text-sm font-medium transition ${selectedSize === size ? 'bg-red-500 text-white border-red-500' : 'border-gray-300 hover:bg-gray-100'}`}>{size}</button>
+                            ))}
                         </div>
                     </div>
-                    <div className='flex items-center justify-start mt-5 gap-5'>
-                        <h1>Size :</h1>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <p>XS</p>
+
+                    {/* Actions (Responsive) */}
+                    <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                         <div className="flex items-center rounded border border-gray-300 w-full sm:w-auto">
+                            <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="w-1/3 sm:w-auto px-4 py-3 text-2xl font-light text-gray-600 transition hover:bg-red-500 hover:text-white disabled:opacity-50" aria-label="Decrease quantity">-</button>
+                            <span className="w-1/3 sm:w-auto text-center px-6 py-3 font-medium text-lg">{quantity}</span>
+                            <button onClick={() => setQuantity(q => q + 1)} className="w-1/3 sm:w-auto px-4 py-3 text-2xl font-light text-gray-600 transition hover:bg-red-500 hover:text-white" aria-label="Increase quantity">+</button>
+                        </div>
+                        <button onClick={handleAddToCart} className="flex-1 rounded bg-red-500 px-8 py-3 font-semibold text-white transition hover:bg-red-600">
+                            Add to Cart
                         </button>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <p>S</p>
-                        </button>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <p>M</p>
-                        </button>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <p>L</p>
-                        </button>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <p>XL</p>
+                        <button className="rounded border border-gray-300 p-3 transition hover:border-red-500 hover:text-red-500">
+                            <HeartIcon className="h-6 w-6"/>
                         </button>
                     </div>
-                    <div className='flex items-center justify-between mt-5'>
-                        <div className='flex items-center  rounded-sm '>
-                            <button className='h-10 w-10 border rounded-l hover:border-black  hover:bg-red-500' onClick={decrement} >-</button>
-                            <div className=' w-20 h-10 border-t border-b flex items-center justify-center'>{count}</div>
-                            <button className='h-10 w-10 border rounded-r hover:border-black hover:bg-red-500' onClick={increment} >+</button>
-                        </div>
-                        <button className=" bg-red-500 rounded hover:bg-red-600 border text-white py-2 px-12" onClick={handleAddToCart} >Add to cart</button>
-                        <button className='h-10 w-10 border rounded hover:border-black flex items-center justify-center hover:invert hover:bg-cyan-400'>
-                            <img src="/image/Wishlist.png" alt="iamge" />
-                        </button>
-                    </div>
-
-                    <div>
-                        <div>
-                            <div className='border  flex rounded-t  py-4 mt-8'>
-                                <div>
-                                    <img className='px-4' src="/image/icondelivery.png" alt="asdsad" />
-                                </div>
-                                <div>
-                                    <h1>Free Delivery</h1>
-                                    <p className='text-sm underline'>Enter your postal code for Delivery Availablity</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className='border flex rounded-b py-4  '>
-                                <div>
-                                    <img className='px-4' src="/image/iconreturn1.png" alt="asdas" />
-                                </div>
-                                <div>
-                                    <h1>Return Delivery</h1>
-                                    <p className='text-sm'>Free 30 Days Delivery Returns. <span className='underline '>Details</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
                 </div>
             </div>
-            <div className="flex flex-col w-[100%]  mx-auto my-5" >
-                <div className="flex justify-between items-center mt-10 " >
-                    <div className='flex'>
-                        <div className="h-5 w-3 rounded-sm bg-red-500 mr-2" ></div>
-                        <h1 className=" text-red-500 text-sm font-semibold " >Related Items</h1>
-                    </div>
-                    <div>
-                        <Link to="/allproducts" className="mt-20 bg-red-500 rounded hover:bg-red-600 border text-white py-2 px-4" >View all</Link>
-                    </div>
+
+            {/* Related Items Section */}
+            <div className='mt-24'>
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="h-10 w-5 rounded bg-red-500"></div>
+                    <h2 className="text-red-500 font-semibold">Related Items</h2>
                 </div>
-
-
-            </div >
-            <div className="flex w-[100%]  mx-auto justify-center items-center flex-col" >
-                <div style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} className="flex gap-5 w-[100%]   overflow-x-auto items-center mt-5 justify-start">
-                    {cardData.filter((card) => card.category === "gaming").map((card) => (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    {cardData.slice(0, 5).map((card) => (
                         <Card key={card.id} card={card} />
                     ))}
                 </div>
-
             </div>
         </div>
-    )
+    );
 }
 
-export default SinglePage
+export default SinglePage;
+

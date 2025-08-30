@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="flex justify-center h-120 mb-5">
       <div className="w-full bg-white p-8">
-        <ProductBanner/>
+         <ProductBanner/>
       </div>
     </div>
   )
