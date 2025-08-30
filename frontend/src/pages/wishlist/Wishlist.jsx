@@ -7,7 +7,6 @@ import { formatCurrency } from '../../utils/formatters.js';
 import { cardData as allProducts } from '../../data/product.js';
 
 // --- Reusable Components for this page ---
-import ProductSlider from '../../components/ProductSlider.jsx';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import PropTypes from 'prop-types';
 
