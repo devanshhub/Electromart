@@ -12,7 +12,7 @@ import AllProducts from './pages/allproducts/AllProducts'
 import SinglePage from './pages/singleProductPage/SinglePage'
 import Cart from './pages/cart/Cart'
 import { useSelector } from 'react-redux'
-import Wishlist from './pages/wishlist/WishList'
+import Wishlist from './pages/wishlist/Wishlist'
 
 
 
