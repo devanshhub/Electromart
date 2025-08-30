@@ -12,7 +12,8 @@ import AllProducts from './pages/allproducts/AllProducts'
 import SinglePage from './pages/singleProductPage/SinglePage'
 import Cart from './pages/cart/Cart'
 import { useSelector } from 'react-redux'
-import Wishlist from './pages/wishlist/Wishlist'
+import Wishlist from './pages/wishlist/Wishlist' 
+import Account from './pages/account/Account'
 
 
 
@@ -41,6 +42,7 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/wishlist" element={ <Wishlist/>} />
       <Route path="*" element={<h1>Page not found</h1>} />
+      <Route path="/account" element={<Account/>} /> 
     </Routes>
    <Footer/>
    </>
