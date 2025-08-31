@@ -81,7 +81,7 @@ const Cart = () => {
                                 <span>Total:</span>
                                 <span>{formatCurrency(totalPrice)}</span>
                             </div>
-                            <Link to="/checkout" className="mt-6 block w-full rounded bg-red-500 py-3 text-center font-semibold text-white transition hover:bg-red-600">
+                            <Link to="/signup" className="mt-6 block w-full rounded bg-red-500 py-3 text-center font-semibold text-white transition hover:bg-red-600">
                                 Proceed to Checkout
                             </Link>
                         </div>

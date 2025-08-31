@@ -46,10 +46,10 @@ const footerLinks = {
   ],
   account: [
     { text: 'My Account', href: '/account' },
-    { text: 'Login / Register', href: '/auth' },
+    { text: 'Login / Register', href: '/signup' },
     { text: 'Cart', href: '/cart' },
     { text: 'Wishlist', href: '/wishlist' },
-    { text: 'Shop', href: '/shop' },
+    { text: 'Shop', href: '/allproducts' },
   ],
   quickLink: [
     { text: 'Privacy Policy', href: '/privacy' },
