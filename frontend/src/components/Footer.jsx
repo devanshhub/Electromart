@@ -29,7 +29,7 @@ const TwitterIcon = (props) => (
 );
 
 const InstagramIcon = (props) => (
-    <svg fill="currentColor" viewBox="0 0 16 16" {...props}><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 00-1.417.923A3.927 3.927 0 00.42 2.76C.222 3.268.087 3.85.048 4.703.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 001.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 00-.923-1.417A3.911 3.911 0 0013.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 01-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 01-.92-.598 2.48 2.48 0 01-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 100 1.92.96.96 0 000-1.92zm-4.27 1.122a4.109 4.109 0 100 8.217 4.109 4.109 0 000-8.217zm0 1.441a2.667 2.667 0 110 5.334 2.667 2.667 0 010-5.334z"/></svg>
+    <svg fill="currentColor" viewBox="0 0 16 16" {...props}><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 00-1.417.923A3.927 3.927 0 00.42 2.76C.222 3.268.087 3.85.048 4.703.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 001.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 00-.923-1.417A3.911 3.911 0 0013.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 01-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 01-.92-.598 2.48 2.48 0 01-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 100 1.92.96.96 0 000-1.92zm-4.27 1.122a4.109 4.109 0 100 8.217 4.109 4.109 0 000-8.217zm0 1.441a2.667 2.667 0 110 5.334 2.667 2.667 0 010-5.334z"/></svg>
 );
 
 const LinkedinIcon = (props) => (
@@ -38,7 +38,6 @@ const LinkedinIcon = (props) => (
 
 
 // --- Data for Footer Links ---
-// Keeping data separate from the component makes it much easier to update.
 const footerLinks = {
   support: [
     { text: 'SSDN ENTERPRISES', href: '' },
@@ -60,6 +59,15 @@ const footerLinks = {
   ],
 };
 
+// ========== NEW DATA FOR MOBILE ==========
+// A shorter, consolidated list of links for smaller screens
+const mobileLinks = [
+    { text: 'Shop', href: '/shop' },
+    { text: 'Contact', href: '/contact' },
+    { text: 'Terms Of Use', href: '/terms' },
+    { text: 'My Account', href: '/account' },
+];
+
 const socialLinks = [
     { name: 'Facebook', icon: FacebookIcon, href: 'https://facebook.com' },
     { name: 'Twitter', icon: TwitterIcon, href: 'https://twitter.com' },
@@ -68,14 +76,12 @@ const socialLinks = [
 ]
 
 // --- Reusable Column Component ---
-// This prevents repeating the same structure for each column.
 const FooterColumn = ({ title, links }) => (
   <div className="flex flex-col gap-4">
     <h3 className="text-xl font-bold">{title}</h3>
     <ul className="flex flex-col gap-3">
       {links.map((link) => (
         <li key={link.text}>
-          {/* Use <a> for external links, or <Link> from react-router for internal navigation */}
           <a
             href={link.href}
             className="text-gray-300 hover:text-white hover:underline transition-colors duration-300"
@@ -91,13 +97,11 @@ const FooterColumn = ({ title, links }) => (
 
 const Footer = () => {
   return (
-    // Use the semantic <footer> tag for the footer section.
     <footer className="bg-black text-white font-[Poppins]">
       <div className="container mx-auto px-6 lg:px-8 py-16">
-        {/* Main grid for the footer columns. Stacks on mobile, expands on larger screens. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-10">
           
-          {/* Column 1: Brand & Subscription */}
+          {/* Column 1: Brand & Subscription (Visible on all screens) */}
           <div className="flex flex-col gap-4 lg:col-span-1">
             <h3 className="text-xl font-extrabold">SSDN ENTERPRISES</h3>
             <div className="flex flex-col gap-3">
@@ -121,29 +125,44 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2: Support */}
-          <FooterColumn title="Support" links={footerLinks.support} />
-          
-          {/* Column 3: Account */}
-          <FooterColumn title="Account" links={footerLinks.account} />
-          
-          {/* Column 4: Quick Link */}
-          <FooterColumn title="Quick Link" links={footerLinks.quickLink} />
+          {/* ========== CHANGES START ========== */}
 
-          {/* Column 5: Social Links */}
+          {/* Column 2: Full Support Menu (Desktop Only) */}
+          <div className="hidden lg:block">
+            <FooterColumn title="Support" links={footerLinks.support} />
+          </div>
+
+          {/* New Column: Consolidated Quick Links (Mobile/Tablet Only) */}
+          <div className="lg:hidden">
+            <FooterColumn title="Quick Links" links={mobileLinks} />
+          </div>
+          
+          {/* Column 3: Account (Desktop Only) */}
+          <div className="hidden lg:block">
+            <FooterColumn title="Account" links={footerLinks.account} />
+          </div>
+          
+          {/* Column 4: Quick Link (Desktop Only) */}
+          <div className="hidden lg:block">
+            <FooterColumn title="Quick Link" links={footerLinks.quickLink} />
+          </div>
+
+          {/* ========== CHANGES END ========== */}
+
+          {/* Column 5: Social Links (Visible on all screens) */}
            <div className="flex flex-col gap-4">
             <h3 className="text-xl font-bold">Social</h3>
             <div className="flex items-center gap-4">
                {socialLinks.map((social) => (
                  <a 
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Follow us on ${social.name}`}
-                    className="text-gray-300 hover:text-white transition-colors"
+                   key={social.name}
+                   href={social.href}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label={`Follow us on ${social.name}`}
+                   className="text-gray-300 hover:text-white transition-colors"
                  >
-                    <social.icon className="h-6 w-6" />
+                   <social.icon className="h-6 w-6" />
                  </a>
                ))}
             </div>

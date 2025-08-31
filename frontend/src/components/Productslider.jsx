@@ -30,10 +30,10 @@ const ProductSlider = () => {
 
   return (
     // Note: The code you provided had w-[97%], I've kept that here.
-    <section className="w-[96%] h-[80%] mx-auto px-4 sm:px-6 lg:px-4 my-3 md:my-16">
+    <section className="w-[96%] h-[80%] mx-auto px-4 sm:px-6 lg:px-4 my-16 md:my-16">
       
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8">
-        <SectionHeader title="Related items" subtitle="Today's" />
+        <SectionHeader title="Explore all products" subtitle="Today's" />
         
         {/* This div is correctly configured to only show on large screens (desktops) */}
         <div className="hidden lg:flex gap-3">
