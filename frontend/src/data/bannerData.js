@@ -1,7 +1,7 @@
 export const bannerSlides = [
   {
     title: 'High-Performance Inverters',
-    subtitle: 'Uninterrupted Power, Guaranteed.',
+    subtitle: 'Uninterrupted Power',
     shopLink: '/allproducts', // Example link
     image: '/image/Banner-inverter.png',
     bgColor: 'bg-gradient-to-br from-blue-400 to-gray-800',
@@ -9,7 +9,7 @@ export const bannerSlides = [
   },
   {
     title: 'Reliable Stabilizers',
-    subtitle: 'Protect Your Valuable Appliances.',
+    subtitle: 'Protect Valuable Appliances.',
     shopLink: '/allproducts', // Example link
     image: '/image/Banner-stablizer.png',
     bgColor: 'bg-gradient-to-br from-red-600 to-gray-900',
@@ -25,7 +25,7 @@ export const bannerSlides = [
   },
   {
     title: 'Efficient Solar Solutions',
-    subtitle: 'Harness the Power of the Sun.',
+    subtitle: 'Harness the Power of Sun.',
     shopLink: '/allproducts', // Example link
     image: '/image/solar-panel.png',
     bgColor: 'bg-gradient-to-br from-yellow-400 to-blue-500',
