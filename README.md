@@ -30,6 +30,17 @@ Electromart is a modern, scalable e-commerce platform tailored for **electronic 
 
 ---
 
+## 📸 Screenshots 
+
+<p align="center" justify="start" items="center" >
+  <img src="/Screenshots of UI/Screenshot 2025-08-31 102506.png" alt="Homepage Screenshot" />
+  <img src="/Screenshots of UI/Screenshot 2025-08-31 102413.png" alt="Homepage Screenshot" />
+  <img src="/Screenshots of UI/Screenshot 2025-08-31 102433.png" alt="Homepage Screenshot" />
+  <img src="/Screenshots of UI/Screenshot 2025-08-31 102446.png" alt="Homepage Screenshot" />
+</p>
+
+---
+
 ## 🛠 Getting Started  
 
 ### Prerequisites  
