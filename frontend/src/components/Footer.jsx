@@ -42,7 +42,7 @@ const LinkedinIcon = (props) => (
 const footerLinks = {
   support: [
     { text: 'S.S.D.N. ENTERPRISES', href: '' },
-    { text: 'electromartnow@gmail.com', href: 'mailto:electromartnow@gmail.com' },
+    { text: 'devanshhub@gmail.com', href: 'mailto:devanshhub@gmail.com' },
     { text: '+919628350440', href: 'tel:+919628350440' },
   ],
   account: [
@@ -99,7 +99,7 @@ const Footer = () => {
           
           {/* Column 1: Brand & Subscription */}
           <div className="flex flex-col gap-4 lg:col-span-1">
-            <h3 className="text-xl font-extrabold">ELECTROMART</h3>
+            <h3 className="text-xl font-extrabold">S.S.D.N. ENTERPRISES</h3>
             <div className="flex flex-col gap-3">
               <p className="text-lg">Subscribe</p>
               <p className="text-sm text-gray-400">Get 10% off your first order</p>
@@ -153,7 +153,7 @@ const Footer = () => {
         {/* Bottom Bar: Copyright */}
         <div className="border-t border-gray-800 pt-6 text-center">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} ElectroMart. All Rights Reserved.
+            &copy; {new Date().getFullYear()} S.S.D.N. ENTERPRISES All Rights Reserved.
           </p>
         </div>
       </div>

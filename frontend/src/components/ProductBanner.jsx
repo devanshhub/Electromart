@@ -58,7 +58,7 @@ function ProductBanner() {
                         </div>
                         {/* Image */}
                         <div className="flex-1 w-1/2 flex items-center justify-center order-4 md:order-1">
-                            <img src={slide.imageUrl} alt={slide.title} className="w-auto h-40 sm:h-56 md:h-72 lg:h-80 object-contain z-10" />
+                            <img src={slide.image} alt={slide.title} className="w-auto h-40 sm:h-56 md:h-72 lg:h-80 object-contain z-10" />
                         </div>
                     </div>
                 ))}

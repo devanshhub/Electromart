@@ -1,34 +1,34 @@
 export const bannerSlides = [
   {
-    title: 'iPhone 16 Pro',
-    subtitle: 'The Ultimate iPhone.',
+    title: 'High-Performance Inverters',
+    subtitle: 'Uninterrupted Power, Guaranteed.',
     shopLink: '/allproducts', // Example link
-    imageUrl: 'https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/121032-iphone-16-pro-max.png',
-    bgColor: 'bg-gradient-to-br from-orange-500 to-black-200', // A solid, sleek black background
-    textColor: 'text-black'
+    image: '/image/Banner-inverter.png',
+    bgColor: 'bg-gradient-to-br from-blue-400 to-gray-800',
+    textColor: 'text-white'
   },
   {
-    title: 'Apple Watch Ultra 2',
-    subtitle: 'Next-Level Adventure.',
+    title: 'Reliable Stabilizers',
+    subtitle: 'Protect Your Valuable Appliances.',
     shopLink: '/allproducts', // Example link
-    imageUrl: 'https://www.aptronixindia.com/pub/media/catalog/product/t/i/titanium_orange_ocean_band_pdp_image_position-1__en-us-removebg-preview_1.png',
-    bgColor: 'bg-gradient-to-br from-orange-500 to-red-600',
-    textColor: 'text-black'
+    image: '/image/Banner-stablizer.png',
+    bgColor: 'bg-gradient-to-br from-red-600 to-gray-900',
+    textColor: 'text-white'
   },
   {
-    title: 'MacBook Air M3',
-    subtitle: 'Lean. Mean. M3 Machine.',
+    title: 'Long-Lasting Batteries',
+    subtitle: 'Powering Your Life, Day and Night.',
     shopLink: '/allproducts', // Example link
-    imageUrl: 'https://www.indiaistore.com/files/uploads/products/macbook-air-m3/images/hero_small_2x.png?1708555710106',
-    bgColor: 'bg-gradient-to-br from-slate-100 to-blue-100',
-    textColor: 'text-black'
+    image: '/image/Bannerbatter.png',
+    bgColor: 'bg-gradient-to-br from-green-500 to-gray-700',
+    textColor: 'text-white'
   },
   {
-    title: 'iPad Pro',
-    subtitle: 'Thinpossible. Bigpossible.',
+    title: 'Efficient Solar Solutions',
+    subtitle: 'Harness the Power of the Sun.',
     shopLink: '/allproducts', // Example link
-    imageUrl: 'https://www.sunrise.ch/var/commerce/products/web/Default/en/apple_ipad_pro_11256gbcellular2020parent/picture.1612199642232.transform/original/20615_product_image1000x1000png.png',
-    bgColor: 'bg-gradient-to-br from-purple-500 via-pink-500 to-red-500',
+    image: '/image/solar-panel.png',
+    bgColor: 'bg-gradient-to-br from-yellow-400 to-blue-500',
     textColor: 'text-black'
   },
 ];
