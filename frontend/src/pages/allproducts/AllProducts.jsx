@@ -126,7 +126,7 @@ const AllProducts = () => {
         rating: 0,
     });
     const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 8; // Set how many products to show per page
+    const productsPerPage = 16; // Set how many products to show per page
 
     const filteredAndSortedProducts = useMemo(() => {
         let products = cardData;

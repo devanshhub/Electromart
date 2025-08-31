@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { addItem } from '../features/cart/cartSlice.js';
 import { toggleWishlist } from '../features/wishlist/wishlistSlice.js'; // NEW: Import the wishlist action
 import { formatCurrency } from '../utils/formatters.js';
+import { getStarImage } from "../utils/starRating";
 
 // UPDATED: IconButton now accepts and passes an onClick handler
 const IconButton = ({ src, alt, onClick }) => (
@@ -19,7 +20,7 @@ const RatingStars = ({ rating, reviews }) => (
   <div className="flex items-center gap-2">
     <img
       loading="lazy"
-      src="/image/Fivestar.png"
+      src={getStarImage(rating)}   // ✅ FIXED: dynamically pick star image
       alt={`${rating} star rating`}
       className="w-20 lg:w-[100px] h-auto"
     />

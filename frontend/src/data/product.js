@@ -7,13 +7,124 @@
  */
 export const cardData = [
   {
+    id: 53,
+    discount: "15",
+    image: "/image/exide-battery.png",
+    name: "Exide Inverter Battery 150Ah",
+    currentPrice: 12500,
+    originalPrice: 14800,
+    rating: "5",
+    reviews: "120",
+    category: "inverter-battery",
+  },
+  {
+    id: 54,
+    discount: "10",
+    image: "/image/luminous-battery.png",
+    name: "Luminous Inverter Battery 220Ah",
+    currentPrice: 16500,
+    originalPrice: 18200,
+    rating: "4",
+    reviews: "95",
+    category: "inverter-battery"
+  },
+  {
+    id: 55,
+    discount: "18",
+    image: "/image/microtek-inverter.png",
+    name: "Microtek UPS Inverter 1100VA",
+    currentPrice: 6500,
+    originalPrice: 7900,
+    rating: "5",
+    reviews: "150",
+    category: "inverter"
+  },
+  {
+    id: 56,
+    discount: "20",
+    image: "/image/solar-panel.png",
+    name: "Waaree Solar Panel 335W Polycrystalline",
+    currentPrice: 9000,
+    originalPrice: 11200,
+    rating: "5",
+    reviews: "220",
+    category: "solar"
+  },
+  {
+    id: 57,
+    discount: "12",
+    image: "/image/luminous-solar.png",
+    name: "Luminous Solar Inverter NXG+ 1600",
+    currentPrice: 14500,
+    originalPrice: 16400,
+    rating: "5",
+    reviews: "80",
+    category: "solar"
+  },
+  {
+    id: 58,
+    discount: "22",
+    image: "/image/vguard-stabilizer.png",
+    name: "V-Guard VG 400 Voltage Stabilizer",
+    currentPrice: 2700,
+    originalPrice: 3450,
+    rating: "4",
+    reviews: "130",
+    category: "stabilizer"
+  },
+  {
+    id: 59,
+    discount: "18",
+    image: "/image/microtek-stabilizer.png",
+    name: "Microtek EM4160+ Voltage Stabilizer",
+    currentPrice: 3200,
+    originalPrice: 3900,
+    rating: "5",
+    reviews: "99",
+    category: "stabilizer"
+  },
+  {
+    id: 60,
+    discount: "25",
+    image: "/image/amaron-battery.png",
+    name: "Amaron Inverter Battery 150Ah Tall Tubular",
+    currentPrice: 12800,
+    originalPrice: 16000,
+    rating: "5",
+    reviews: "145",
+    category: "inverter-battery"
+  },
+  {
+    id: 61,
+    discount: "15",
+    image: "/image/sukam-inverter.png",
+    name: "Su-Kam Pure Sine Wave Inverter 900VA",
+    currentPrice: 5200,
+    originalPrice: 6100,
+    rating: "4",
+    reviews: "110",
+    category: "inverter"
+  },
+  {
+    id: 62,
+    discount: "20",
+    image: "/image/loom-solar-panel.png",
+    name: "Loom Solar Panel 450W Mono PERC",
+    currentPrice: 13500,
+    originalPrice: 16800,
+    rating: "3",
+    reviews: "200",
+    category: "solar"
+  },
+
+  {
     id: 1,
     discount: 25, // Recalculated for consistency
     image: "/image/Havitfront.png",
     name: "Havic HV G-92 Gamepad",
     currentPrice: 1950,
     originalPrice: 2600,
-    rating: 5,
+    rating: "3",
     reviews: 88,
     category: "gaming",
     description: "High-performance wired gaming controller with dual vibration feedback and a comfortable ergonomic design.",
@@ -53,7 +164,7 @@ export const cardData = [
     name: "ASUS FHD Gaming Laptop",
     currentPrice: 960,
     originalPrice: 1160,
-    rating: 5,
+    rating:"2",
     reviews: 99,
     category: "electronics",
     description: "Powerful gaming laptop featuring an Intel Core i7 processor, NVIDIA GeForce RTX 3060, and a 15.6-inch FHD display."
@@ -65,7 +176,7 @@ export const cardData = [
     name: "HAVIT HV-G92 Gamepad V2",
     currentPrice: 120,
     originalPrice: 160,
-    rating: 5,
+    rating: "1",
     reviews: 88,
     category: "gaming",
     description: "A compact and lightweight version of the classic gamepad, perfect for travel and on-the-go gaming sessions."
@@ -77,7 +188,7 @@ export const cardData = [
     name: "IPS LCD Gaming Monitor 27-inch",
     currentPrice: 370,
     originalPrice: 400,
-    rating: 5,
+    rating: "5",
     reviews: 99,
     category: "electronics",
     description: "A larger 27-inch version of our popular gaming monitor, offering more screen real estate for immersive gameplay."
