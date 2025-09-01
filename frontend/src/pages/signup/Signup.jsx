@@ -9,7 +9,7 @@ import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
 // --- Import your image ---
-import signupLogo from '../../assets/signupLogo.png';
+import signupLogo from '../../assets/loginLogo.png';
 
 const Signup = () => {
     // --- State for form fields ---
