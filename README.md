@@ -1,12 +1,12 @@
-# Electromart  
+# SSDN ENTERPRISES  
 **Empowering Next-Gen Shopping with Cutting-Edge Innovation**  
 
 ---
 
 ## 🚀 Overview  
-Electromart is a modern, scalable e-commerce platform tailored for **electronic products**, built with a sleek **React frontend** and a robust **Express backend**. It offers a comprehensive set of features to streamline development and deliver an engaging shopping experience.  
+SSDN ENTERPRISES is a modern, scalable e-commerce platform tailored for **electronic products**, built with a sleek **React frontend** and a robust **Express backend**. It offers a comprehensive set of features to streamline development and deliver an engaging shopping experience.  
 https://ssdnenterprises.netlify.app/
-### Why Electromart?  
+### Why SSDN ENTERPRISES?  
 - 🛠 **Component Library**: Reusable UI components like Navbar, Footer, Product Cards, and Carousels for rapid UI development.  
 - ⚡ **Fast Development**: Vite-powered React setup with Hot Module Replacement for a seamless developer experience.  
 - 🧩 **Modular Architecture**: Clear separation of frontend and backend, making maintenance and scaling straightforward.  
@@ -54,12 +54,12 @@ Make sure you have the following installed:
 
 1. **Clone the repository:**  
    ```bash
-   git clone https://github.com/devanshhub/Electromart
+   git clone https://github.com/devanshhub/SSDN ENTERPRISES
    ```
 
 2. **Navigate to the project directory:**  
    ```bash
-   cd Electromart
+   cd SSDN ENTERPRISES
    ```
 
 3. **Install dependencies:**  
@@ -80,7 +80,7 @@ npm start
 
 ## 🧪 Testing  
 
-Electromart uses `{test_framework}` for testing.  
+SSDN ENTERPRISES uses `{test_framework}` for testing.  
 Run the test suite with:  
 ```bash
 npm test
