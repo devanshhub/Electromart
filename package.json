@@ -1,0 +1,21 @@
+
+{
+  "name": "ssdn-enterprises-monorepo",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce application for SSDN Enterprises.",
+  "private": true,
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "install-all": "npm run install-client && npm run install-server",
+    "dev-client": "npm run dev --prefix client",
+    "dev-server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\""
+  },
+  "keywords": [],
+  "author": "devan",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
