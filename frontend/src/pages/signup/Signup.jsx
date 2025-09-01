@@ -96,7 +96,7 @@ const Signup = () => {
                 
                 {/* Left Side: Image (Hidden on smaller screens) */}
                 <div className='hidden md:block w-1/2'>
-                    <img src={signupLogo} className='w-full h-full object-cover' alt="Signup illustration" />
+                    <img src={loginLogo} className='w-full h-full object-cover' alt="Signup illustration" />
                 </div>
 
                 {/* Right Side: Form */}
