@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // <-- CHANGED: Added useState and useEffect
 import { Link } from 'react-router-dom';
-import { cardData } from '../data/product.js';
+import axios from 'axios'; // <-- NEW: Added axios for API calls
 import Card from '../components/Card';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
@@ -15,6 +15,12 @@ const SectionHeader = ({ title, subtitle }) => (
 );
 
 const ProductSlider = () => {
+  // --- NEW: State for products, loading, and error handling ---
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // --- PRESERVED: Your scrolling logic is untouched ---
   const scrollContainerRef = useRef(null);
 
   const scroll = (direction) => {
@@ -28,14 +34,41 @@ const ProductSlider = () => {
     }
   };
 
+  // --- NEW: useEffect to fetch data from the API ---
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('http://localhost:3000/api/products');
+        // Take a slice of the products to feature in the slider (e.g., the first 12)
+        setProducts(response.data.slice(0, 12));
+        setError(null);
+      } catch (err) {
+        setError('Could not load products.');
+        console.error("API Error in ProductSlider:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); // The empty array ensures this runs only once when the component mounts
+
+  // --- NEW: Render loading and error states for a better UX ---
+  if (loading) {
+    return <div className="text-center py-20">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-20 text-red-600">{error}</div>;
+  }
+
   return (
-    // Note: The code you provided had w-[97%], I've kept that here.
     <section className="w-[96%] mx-auto px-4 sm:px-6 lg:px-4 my-16 md:my-16">
       
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8">
-        <SectionHeader title="Explore all products" subtitle="Today's" />
+        <SectionHeader title="Explore Our Products" subtitle="Featured" /> {/* Changed title for context */}
         
-        {/* This div is correctly configured to only show on large screens (desktops) */}
         <div className="hidden lg:flex gap-3">
           <button
             onClick={() => scroll('left')}
@@ -56,16 +89,16 @@ const ProductSlider = () => {
 
       <div
         ref={scrollContainerRef}
-        // The 'scrollbar-hide' class here will work once you install the plugin (Option A).
-        // Or, you can change it to 'no-scrollbar' if you use the CSS from Option B.
         className="flex gap-4 md:gap-6 lg:gap-4 py-8 mt-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
       >
-        {cardData.map(card => (
+        {/* --- CHANGED: Mapping over the 'products' state from the API --- */}
+        {products.map(product => (
           <div 
-            key={card.id} 
+            key={product._id} // <-- Use unique '_id' from the database
             className="flex-none snap-start w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
-             <Card card={card} />
+             {/* --- THE CRITICAL FIX: Pass 'product' prop, not 'card' --- */}
+             <Card product={product} />
           </div>
         ))}
       </div>

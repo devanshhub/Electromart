@@ -1,13 +1,10 @@
-// src/features/cart/cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 // A helper function to update totals and save to localStorage
 const updateStateAndLocalStorage = (state) => {
-  // Recalculate total quantity
   state.totalQuantity = state.items.reduce((total, item) => total + item.quantity, 0);
-  // Recalculate total price
-  state.totalPrice = state.items.reduce((total, item) => total + (item.currentPrice * item.quantity), 0);
-  // Save the entire cart state to localStorage
+  // CHANGED: Use `item.price` instead of `item.currentPrice`
+  state.totalPrice = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   localStorage.setItem('cart', JSON.stringify(state));
 };
 
@@ -24,50 +21,58 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // Adds an item to the cart, or increases its quantity if it already exists
     addItem: (state, action) => {
-      const newItem = action.payload.item;
+      const newItem = action.payload.item; // This is the full product object from the DB
       const quantity = action.payload.quantity || 1;
-      const existingItem = state.items.find((item) => item.id === newItem.id);
+      
+      // CHANGED: Find existing item by '_id'
+      const existingItem = state.items.find((item) => item._id === newItem._id);
 
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
-        // Push a clean version of the item, ensuring quantity is set
-        state.items.push({ ...newItem, quantity: quantity });
+        // NOTE: We are creating a smaller, cleaner object to store in the cart
+        // This keeps the cart state lean and focused.
+        const cartItem = {
+          _id: newItem._id,
+          name: newItem.name,
+          price: newItem.price,
+          // Use the first image from the array as the cart image
+          imageUrl: (newItem.imageUrls && newItem.imageUrls.length > 0) ? newItem.imageUrls[0] : '/image/placeholder.png',
+          quantity: quantity,
+        };
+        state.items.push(cartItem);
       }
       updateStateAndLocalStorage(state);
     },
 
-    // Removes an entire item line (e.g., all 5 units of a product) from the cart
     removeItem: (state, action) => {
+      // CHANGED: The payload is now the '_id' string
       const idToRemove = action.payload;
-      state.items = state.items.filter((item) => item.id !== idToRemove);
+      state.items = state.items.filter((item) => item._id !== idToRemove);
       updateStateAndLocalStorage(state);
     },
 
-    // Sets the quantity for a specific item, used by the +/- buttons
     updateQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const itemToUpdate = state.items.find((item) => item.id === id);
+      // CHANGED: The payload now contains '_id'
+      const { _id, quantity } = action.payload;
+      const itemToUpdate = state.items.find((item) => item._id === _id);
 
       if (itemToUpdate) {
         if (quantity > 0) {
           itemToUpdate.quantity = quantity;
         } else {
           // If quantity is 0 or less, remove the item
-          state.items = state.items.filter((item) => item.id !== id);
+          state.items = state.items.filter((item) => item._id !== _id);
         }
       }
       updateStateAndLocalStorage(state);
     },
 
-    // Clears the entire cart
     clearCart: (state) => {
       state.items = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;
-      // Also clear from localStorage
       localStorage.removeItem('cart');
     },
   },

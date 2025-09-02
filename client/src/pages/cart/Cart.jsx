@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// FIXED: Corrected relative paths to go up two levels
-import { clearCart, updateQuantity, removeItem } from '../../features/cart/cartSlice.js';
+import { clearCart } from '../../features/cart/cartSlice.js';
 import { formatCurrency } from '../../utils/formatters.js';
 import CartCard from '../../components/CartCard.jsx';
-import PropTypes from 'prop-types';
 
-// Component for the Empty Cart state
+// Component for the Empty Cart state (no changes needed)
 const EmptyCart = () => (
     <div className="mt-16 flex flex-col items-center text-center">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,8 +23,17 @@ const EmptyCart = () => (
 );
 
 const Cart = () => {
-    const { items, totalPrice } = useSelector((state) => state.cart) || { items: [], totalPrice: 0 };
+    // --- CHANGED: We only need the 'items' array from the cart state ---
+    const items = useSelector((state) => state.cart.items) || [];
     const dispatch = useDispatch();
+
+    // --- NEW: Calculate totals directly in the component for accuracy ---
+    const subtotal = useMemo(() => {
+        return items.reduce((total, item) => total + item.price * item.quantity, 0);
+    }, [items]);
+
+    const shippingCost = 0; // Or add your shipping logic here
+    const total = subtotal + shippingCost;
 
     const handleClearCart = () => dispatch(clearCart());
 
@@ -45,11 +52,12 @@ const Cart = () => {
 
             {items.length > 0 ? (
                 <>
-                    <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-6">
+                    <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-6">
+                        {/* --- THE CRITICAL FIX --- */}
                         {items.map(item => (
                             <CartCard
-                                key={item.id}
-                                cardData={item}
+                                key={item._id}   // Use '_id' from the database
+                                item={item}      // Pass the prop as 'item'
                             />
                         ))}
                     </div>
@@ -57,8 +65,8 @@ const Cart = () => {
                     <div className="mt-12 flex flex-col-reverse items-start gap-8 lg:flex-row lg:justify-between">
                         <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-4">
                              <Link to="/allproducts" className="w-full sm:w-auto text-center rounded border border-gray-400 px-6 py-3 font-semibold text-black transition hover:bg-gray-100">
-                                Return To Shop
-                            </Link>
+                                 Return To Shop
+                             </Link>
                             <button
                                 onClick={handleClearCart}
                                 className="w-full sm:w-auto rounded border border-gray-400 px-6 py-3 font-semibold text-black transition hover:bg-gray-100"
@@ -71,17 +79,19 @@ const Cart = () => {
                             <h2 className="text-xl font-medium">Cart Total</h2>
                             <div className="mt-6 flex justify-between border-b pb-4">
                                 <span>Subtotal:</span>
-                                <span>{formatCurrency(totalPrice)}</span>
+                                {/* --- UPDATED: Use the newly calculated subtotal --- */}
+                                <span>{formatCurrency(subtotal)}</span>
                             </div>
                             <div className="mt-4 flex justify-between border-b pb-4">
                                 <span>Shipping:</span>
-                                <span>Free</span>
+                                <span>{shippingCost === 0 ? 'Free' : formatCurrency(shippingCost)}</span>
                             </div>
                             <div className="mt-4 flex justify-between font-medium">
                                 <span>Total:</span>
-                                <span>{formatCurrency(totalPrice)}</span>
+                                {/* --- UPDATED: Use the newly calculated total --- */}
+                                <span>{formatCurrency(total)}</span>
                             </div>
-                            <Link to="/signup" className="mt-6 block w-full rounded bg-red-500 py-3 text-center font-semibold text-white transition hover:bg-red-600">
+                            <Link to="/checkout" className="mt-6 block w-full rounded bg-red-500 py-3 text-center font-semibold text-white transition hover:bg-red-600">
                                 Proceed to Checkout
                             </Link>
                         </div>
@@ -95,4 +105,3 @@ const Cart = () => {
 }
 
 export default Cart;
-

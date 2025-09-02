@@ -1,38 +1,33 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { toggleWishlist } from '../../features/wishlist/wishlistSlice.js';
 import { addItem } from '../../features/cart/cartSlice.js';
 import { formatCurrency } from '../../utils/formatters.js';
-import { cardData as allProducts } from '../../data/product.js';
 
-// --- Reusable Components for this page ---
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import PropTypes from 'prop-types';
 
-// UPDATED: This card now has the desktop hover effect for the "Move to Cart" button.
-const WishlistItemCard = ({ item: itemFromWishlist, onRemove, onAddToCart }) => {
-  const productDetails = allProducts.find(p => p.id === itemFromWishlist.id);
+// --- CORRECTED Child Component ---
+const WishlistItemCard = ({ item, onRemove, onAddToCart }) => {
+  // --- Destructure properties directly from the 'item' prop ---
+  // This 'item' is the full product object from your Redux wishlist state.
+  const { _id, name, price, originalPrice, imageUrls } = item;
 
-  if (!productDetails) {
-    return null;
-  }
-
-  const { image, name, currentPrice, originalPrice, id } = productDetails;
+  // No more searching through static data is needed!
+  const displayImage = imageUrls && imageUrls.length > 0 ? imageUrls[0] : '/image/placeholder.png';
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-sm transition-all hover:shadow-lg">
-      {/* Image Container */}
       <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-t-lg bg-neutral-100 aspect-square p-4">
-        <Link to={`/allproducts/${id}`}>
+        <Link to={`/allproducts/${_id}`}>
             <img
                 loading="lazy"
-                src={image}
+                src={displayImage}
                 alt={name}
                 className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
             />
         </Link>
-        {/* Remove Button */}
         <button
           onClick={onRemove}
           className="absolute top-3 right-3 z-10 rounded-full bg-red-500 p-1.5 text-white shadow-md transition hover:bg-red-600"
@@ -41,7 +36,6 @@ const WishlistItemCard = ({ item: itemFromWishlist, onRemove, onAddToCart }) => 
           <XMarkIcon className="h-5 w-5" />
         </button>
         
-        {/* Desktop "Move to Cart" Button - appears on hover */}
         <button
           onClick={onAddToCart}
           className="absolute bottom-0 hidden h-10 w-full items-center justify-center bg-black text-white transition-all duration-300 translate-y-full group-hover:translate-y-0 lg:flex"
@@ -51,20 +45,18 @@ const WishlistItemCard = ({ item: itemFromWishlist, onRemove, onAddToCart }) => 
         </button>
       </div>
 
-      {/* Details Section */}
       <div className="flex flex-1 flex-col p-4">
         <h3 className="text-sm font-medium text-black line-clamp-2 min-h-[2.5rem] lg:text-base lg:min-h-[3rem]">
-          <Link to={`/allproducts/${id}`}>{name}</Link>
+          <Link to={`/allproducts/${_id}`}>{name}</Link>
         </h3>
         <div className="mt-auto flex items-center gap-3 pt-2 text-sm lg:text-base">
-          <span className="font-medium text-red-500">{formatCurrency(currentPrice)}</span>
+          <span className="font-medium text-red-500">{formatCurrency(price)}</span>
           {originalPrice && (
             <span className="font-medium text-black line-through opacity-50">{formatCurrency(originalPrice)}</span>
           )}
         </div>
       </div>
 
-      {/* Mobile "Move to Cart" Button - always visible, hidden on desktop */}
       <button
         onClick={onAddToCart}
         className="mt-auto flex h-10 w-full items-center justify-center rounded-b-lg bg-black text-white transition-colors hover:bg-neutral-800 lg:hidden"
@@ -75,10 +67,10 @@ const WishlistItemCard = ({ item: itemFromWishlist, onRemove, onAddToCart }) => 
   );
 };
 
-// Main Wishlist Page Component
+// --- Main Wishlist Page Component (Corrected) ---
 const Wishlist = () => {
   const dispatch = useDispatch();
-  const wishlistItems = useSelector((state) => state.wishlist.items);
+const wishlistItems = useSelector((state) => state.wishlist?.items) || [];
 
   const handleRemoveFromWishlist = (item) => {
     dispatch(toggleWishlist({ item }));
@@ -102,7 +94,7 @@ const Wishlist = () => {
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 sm:gap-6">
           {wishlistItems.map((item) => (
             <WishlistItemCard
-              key={item.id}
+              key={item._id} // <-- THE CRITICAL FIX: Use '_id'
               item={item}
               onRemove={() => handleRemoveFromWishlist(item)}
               onAddToCart={() => handleMoveToCart(item)}
@@ -124,16 +116,18 @@ const Wishlist = () => {
           </Link>
         </div>
       )}
-
-      {/* "Just For You" Section for re-engagement */}
-      
     </main>
   );
 };
 
+// --- Updated PropTypes ---
 WishlistItemCard.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    originalPrice: PropTypes.number,
+    imageUrls: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onRemove: PropTypes.func.isRequired,
   onAddToCart: PropTypes.func.isRequired,
