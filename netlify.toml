@@ -6,6 +6,3 @@
 
   # This is the build command to run
   command = "npm run build"
-
-  # This is the directory to publish after the build is complete
-  publish = "client/dist"
