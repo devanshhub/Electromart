@@ -1,6 +1,11 @@
 # In SSDN_ENTERPISES/netlify.toml
 
 [build]
- 
+  # This is the base directory, relative to the root of the repository
+  base = "client"
+
+  # This is the build command to run
+  command = "npm run build"
+
   # This is the directory to publish after the build is complete
   publish = "client/dist"
