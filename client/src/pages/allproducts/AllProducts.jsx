@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 // --- Reusable Sub-components (No changes needed here) ---
 
+const apiUrl = `${import.meta.env.VITE_API_URL}/api/products`;
+const response = await axios.get(apiUrl);
+
 const StarRatingFilter = ({ rating, setRating }) => (
     <div>
         <h3 className="text-lg font-semibold mb-2">Rating</h3>
