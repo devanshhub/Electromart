@@ -4,6 +4,7 @@
   "description": "Full-stack e-commerce application for SSDN Enterprises.",
   "private": true,
   "scripts": {
+    "start": "node src/index.js",
     "install-client": "npm install --prefix client",
     "install-server": "npm install --prefix server",
     "install-all": "npm run install-client && npm run install-server",
