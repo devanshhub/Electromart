@@ -7,4 +7,4 @@
 
 
   # This is the directory to publish after the build is complete
-  publish = "client/dist"
+  publish = "dist"
